@@ -19,23 +19,23 @@ const cadastrarUsuario = async (req, res) => {
 	const { nome, email, senha } = req.body
 
 	try {
-		
-		if (!nome){
-			return res.status(400).json({ mensagem: 'O Nome é Obrigatório'})
+
+		if (!nome) {
+			return res.status(400).json({ mensagem: 'O Nome é Obrigatório' })
 		}
-		if (!email){
-			return res.status(400).json({ mensagem: 'O email é Obrigatório'})
+		if (!email) {
+			return res.status(400).json({ mensagem: 'O email é Obrigatório' })
 		}
 
-		if (!senha){
-			return res.status(400).json({ mensagem: 'O senha é Obrigatória'})
+		if (!senha) {
+			return res.status(400).json({ mensagem: 'O senha é Obrigatória' })
 		}
 
 
 		// const queryClienteEmail = 'select * from clientes where email = $1'
 		// const emailExistente = await pool.query(queryClienteEmail, [email])
 
-		const emailExistente = await knex('usuarios').where({email})
+		const emailExistente = await knex('usuarios').where({ email })
 
 
 		if (emailExistente.length > 0) {
@@ -48,14 +48,14 @@ const cadastrarUsuario = async (req, res) => {
 
 
 		// const query = `
-        //     insert into clientes (nome, email, telefone) 
-        //     values ($1, $2, $3) returning *
-        // `
+		//     insert into clientes (nome, email, telefone) 
+		//     values ($1, $2, $3) returning *
+		// `
 		// const params = [nome, email, telefone]
 		// const cliente = await pool.query(query, params)
 
-		const cliente = await knex('usuarios').insert({ nome, email, senha:senhaCriptografada } ).returning('*')
-		
+		const cliente = await knex('usuarios').insert({ nome, email, senha: senhaCriptografada }).returning('*')
+
 
 		return res.status(201).json(cliente)
 	} catch (error) {
@@ -63,11 +63,34 @@ const cadastrarUsuario = async (req, res) => {
 	}
 }
 
+const loginUsuario = async (req, res) => {
+	const { email, senha } = req.body;
+	try {
+		const usuario = await knex('usuarios').where('email', email).first();
 
+		if (!usuario) {
+			return res.status(401).send({ message: "Autenticação falhou" });
+		}
 
-const login = async (req, res) => {
+		const senhaCorreta = await bcrypt.compare(senha, usuario.senha);
 
+		if (!senhaCorreta) {
+			return res.status(401).send({ message: "Autenticação falhou" });
+		}
+
+		const token = jwt.sign(
+			{ id: usuario.id },
+			senhaJwt,
+			{ expiresIn: "8h" }
+		);
+		return res.status(200).send({ token });
+
+	} catch (error) {
+		return res.status(500).json({ error: error.message })
+	}
 }
+
+
 
 const detalharPerfil = async (req, res) => {
 
@@ -81,9 +104,9 @@ const editarPerfil = async (req, res) => {
 
 
 module.exports = {
-    cadastrarUsuario,
-    login,
-    detalharPerfil,
-    editarPerfil,
-    listarCategorias
+	cadastrarUsuario,
+	loginUsuario,
+	detalharPerfil,
+	editarPerfil,
+	listarCategorias
 }
