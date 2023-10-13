@@ -15,7 +15,7 @@ const verificarLogin = async (req, res, next) => {
     try {
         const { id } = jwt.verify(token, senhaJwt)
 
-        const usuario = await knex('usuario').where('id', id).first();
+        const usuario = await knex('usuarios').where('id', id).first();
 
         if (!usuario) {
             return res.status(401).json({ message: 'Não autorizado' })

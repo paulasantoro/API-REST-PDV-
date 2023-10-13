@@ -1,6 +1,5 @@
 const express = require("express");
-const validarSenha = require("./intermediarios/validacao");
-
+const verificarLogin = require("./intermediarios/validacao");
 
 const {
     cadastrarUsuario,
@@ -9,8 +8,6 @@ const {
     editarPerfil,
     listarCategorias
 } = require('./controladores/usuarios.js');
-
-const verificarLogin = require("./intermediarios/validacao");
 
 
 const rotas = express();
@@ -21,6 +18,6 @@ rotas.post("/login", loginUsuario);
 rotas.use(verificarLogin);
 
 rotas.get("/usuario", detalharPerfil);
-rotas.put('/usuario', editarPerfil);
+rotas.put("/usuario", editarPerfil);
 
 module.exports = rotas;

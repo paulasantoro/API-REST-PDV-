@@ -31,10 +31,6 @@ const cadastrarUsuario = async (req, res) => {
 			return res.status(400).json({ mensagem: 'O senha é Obrigatória' })
 		}
 
-
-		// const queryClienteEmail = 'select * from clientes where email = $1'
-		// const emailExistente = await pool.query(queryClienteEmail, [email])
-
 		const emailExistente = await knex('usuarios').where({ email })
 
 
@@ -45,14 +41,6 @@ const cadastrarUsuario = async (req, res) => {
 		}
 
 		const senhaCriptografada = await bcrypt.hash(senha, 10);
-
-
-		// const query = `
-		//     insert into clientes (nome, email, telefone) 
-		//     values ($1, $2, $3) returning *
-		// `
-		// const params = [nome, email, telefone]
-		// const cliente = await pool.query(query, params)
 
 		const cliente = await knex('usuarios').insert({ nome, email, senha: senhaCriptografada }).returning('*')
 
@@ -91,14 +79,42 @@ const loginUsuario = async (req, res) => {
 }
 
 
-
 const detalharPerfil = async (req, res) => {
 
 }
 
 const editarPerfil = async (req, res) => {
+	const { nome, email, senha } = req.body;
+	const { id } = req.usuario;
 
-}
+	if (!nome || !email || !senha) {
+		return res.status(400).json({ message: "O campo nome, email e senha são obrigatorios" })
+	}
+
+	try {
+
+		const emailEncontrado = await knex('usuarios').where('email', email);
+
+		if (emailEncontrado.length > 0 && id !== emailEncontrado[0].id) {
+			return res.status(400).json({ message: "Esse e-mail já está em uso" })
+		}
+
+		const senhaHashed = await bcrypt.hash(senha, 10);
+
+		await knex('usuarios').where('id', id).update({
+			nome,
+			email,
+			senha: senhaHashed
+		})
+
+		return res.status(204).send();
+
+
+	} catch (error) {
+		return res.status(500).json({ error: error.message })
+	}
+};
+
 
 
 
