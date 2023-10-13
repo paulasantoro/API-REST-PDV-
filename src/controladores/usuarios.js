@@ -31,10 +31,6 @@ const cadastrarUsuario = async (req, res) => {
 			return res.status(400).json({ mensagem: 'O senha é Obrigatória'})
 		}
 
-
-		// const queryClienteEmail = 'select * from clientes where email = $1'
-		// const emailExistente = await pool.query(queryClienteEmail, [email])
-
 		const emailExistente = await knex('usuarios').where({email})
 
 
@@ -45,14 +41,6 @@ const cadastrarUsuario = async (req, res) => {
 		}
 
 		const senhaCriptografada = await bcrypt.hash(senha, 10);
-
-
-		// const query = `
-        //     insert into clientes (nome, email, telefone) 
-        //     values ($1, $2, $3) returning *
-        // `
-		// const params = [nome, email, telefone]
-		// const cliente = await pool.query(query, params)
 
 		const cliente = await knex('usuarios').insert({ nome, email, senha:senhaCriptografada } ).returning('*')
 		
@@ -70,7 +58,7 @@ const login = async (req, res) => {
 }
 
 const detalharPerfil = async (req, res) => {
-
+	const { id } = req.params
 }
 
 const editarPerfil = async (req, res) => {
