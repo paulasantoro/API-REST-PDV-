@@ -35,7 +35,7 @@ const cadastrarUsuario = async (req, res) => {
 
 		return res.status(201).json(cliente)
 	} catch (error) {
-		return res.status(500).json(error.message)
+		return res.status(500).json({ mensagem: 'Erro interno no servidor' })
 	}
 }
 
@@ -62,13 +62,20 @@ const loginUsuario = async (req, res) => {
 		return res.status(200).send({ token });
 
 	} catch (error) {
-		return res.status(500).json({ error: error.message })
+		return res.status(500).json({ mensagem: 'Erro interno no servidor' })
 	}
 }
 
 
 const detalharPerfil = async (req, res) => {
+	const { id } = req.usuario
+	try {
+		const resultado = await knex('usuarios').select({ id, nome, email }).where('id', id)
 
+		return res.status(201).json(resultado)
+	} catch (error) {
+		return res.status(500).json({ mensagem: 'Erro interno no servidor' })
+	}
 }
 
 const editarPerfil = async (req, res) => {
@@ -99,7 +106,7 @@ const editarPerfil = async (req, res) => {
 
 
 	} catch (error) {
-		return res.status(500).json({ error: error.message })
+		return res.status(500).json({ mensagem: 'Erro interno no servidor' })
 	}
 };
 
