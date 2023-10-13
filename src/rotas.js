@@ -1,14 +1,13 @@
 const express = require("express");
-const validarSenha = require("./intermediarios/validacao");
-
+const verificarLogin = require("./intermediarios/validacao");
 
 const {
     cadastrarUsuario,
-    login,
+    loginUsuario,
     detalharPerfil,
     editarPerfil,
-    listarCategorias
-}= require ('./controladores/usuarios.js')
+} = require('./controladores/usuarios.js');
+const { listarCategorias } = require("./controladores/categorias");
 
 
 const rotas = express();
@@ -18,5 +17,9 @@ rotas.post("/usuario", cadastrarUsuario);
 rotas.post("/login", login);
 rotas.get("/usuario:id", detalharPerfil); 
 rotas.put('/usuario', editarPerfil ); 
+rotas.post("/login", loginUsuario);
+rotas.use(verificarLogin);
+
+
 
 module.exports = rotas;
