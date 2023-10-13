@@ -6,8 +6,8 @@ const {
     loginUsuario,
     detalharPerfil,
     editarPerfil,
-    listarCategorias
 } = require('./controladores/usuarios.js');
+const { listarCategorias } = require("./controladores/categorias");
 
 
 const rotas = express();

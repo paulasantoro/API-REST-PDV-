@@ -3,18 +3,6 @@ const knex = require('../database/conexao')
 const jwt = require('jsonwebtoken')
 const senhaJwt = require('../jwt')
 
-
-
-const listarCategorias = async (req, res) => {
-	try {
-		const categorias = await knex('categorias')
-
-		return res.status(200).json(categorias)
-	} catch (error) {
-		return res.status(500).json(error.message)
-	}
-};
-
 const cadastrarUsuario = async (req, res) => {
 	const { nome, email, senha } = req.body
 
@@ -123,6 +111,5 @@ module.exports = {
 	cadastrarUsuario,
 	loginUsuario,
 	detalharPerfil,
-	editarPerfil,
-	listarCategorias
+	editarPerfil
 }
