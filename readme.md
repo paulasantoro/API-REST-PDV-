@@ -1,38 +1,107 @@
-Desafio-backend-m05-b2bt05
+# PDV 
+<h4 align="center"> 
+	🚧 Ponto de venda 🚧
+</h4>
 
-DESCRIÇÃO DO DESAFIO
+<p align="center">
+	<img alt="Status Concluído" src="https://img.shields.io/badge/STATUS-CONCLU%C3%8DDO-brightgreen">
+</p> 
 
-Este projeto tem como finalidade a entrega de 3 sprints referente ao desafio do módulo 5, do curso de Desenvolvimento de Software - BackEnd.
+<p align="center">
+ <a href="#-sobre-o-projeto">Sobre</a> •
+ <a href="#-funcionalidades">Funcionalidades</a> •
+ <a href="#-como-executar-o-projeto">Como executar</a> • 
+ <a href="#-contribuidores">Contribuidores</a> • 
+ <a href="#-autor">Autor</a> • 
+</p>
 
-OBJETIVO
+## 💻 Sobre o projeto
 
-O objetivo é criar uma API para um PDV (Frente de Caixa). Esse será um projeto piloto, ou seja, no futuro outras funcionalidades serão implementadas.
+Neste desafio do Módulo 5 da Cubos Academy, nossa equipe está empenhada em criar uma API para um PDV (Ponto de Venda), um projeto inicial que servirá como base para futuras funcionalidades emocionantes.
+Iniciamos criando um banco de dados PostgreSQL chamado "pdv" e definindo tabelas essenciais, como "usuarios" e "categorias". Cada registro possui um campo "id" como chave primária e não pode ser editado após a criação. Valor monetário é representado em centavos para precisão e uniformidade.
+Nossa API já é capaz de listar categorias, cadastrar usuários e permitir a autenticação. Os usuários podem criar contas, fazer login, visualizar e editar seus próprios perfis.
 
-REQUISITOS
+---
 
-A API a ser criada deverá acessar o banco de dados a ser criado pdv para persistir e manipular os dados de categorias, clientes, pedidos, produtos e usuários utilizados pela aplicação.
-O campo id das tabelas no banco de dados deve ser auto incremento, chave primária e não deve permitir edição uma vez criado.
-Qualquer valor monetário deverá ser representado em centavos (Ex.: R$ 10,00 reais = 1000)
-Banco de Dados criado no ElephantSQL
-Efetuar deploy da aplicação no Ciclic
+## ⚙️ Funcionalidades
 
-FUNCIONALIDADES
+- [x] Listar categorias
+- [x] Cadastro de usuários
+- [x] Efetuar login do usuário
+- [x] Detalhar perfil do usuário ligado
+- [x] Editar perfil do usuário ligado
+---
 
-Listar categorias
-https://busy-jade-salamander-toga.cyclic.app/categoria
-![Alt text](image-4.png)
+## 🛣️ Como executar o projeto
 
-Cadastrar usuário
-https://busy-jade-salamander-toga.cyclic.app/usuario
-![Alt text](image.png)
+Este projeto é divido em duas partes:
+1. Backend (pasta server)
+2. Insomia (testes de API)
 
-Efetuar login do usuário
-https://busy-jade-salamander-toga.cyclic.app/login
-![Alt text](image-1.png)
+💡 O insomia precisa que o Backend esteja sendo executado para funcionar.
 
-Detalhar perfil do usuário logado
-https://busy-jade-salamander-toga.cyclic.app/usuario
+### Pré-requisitos
 
-Editar perfil do usuário logado
-https://busy-jade-salamander-toga.cyclic.app/usuario
-![Alt text](image-3.png)
+Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
+[Node.js](https://nodejs.org/en/), [Insomia](https://insomnia.rest/download) . 
+<br> Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/).
+
+#### 🎲 Rodando o Backend (servidor)
+
+```bash
+
+# Clone este repositório
+$ git clone git@github.com:paulasantoro/desafio-unidade-05-pvd.git
+
+# Instale as dependências
+
+`$ npm install express`
+
+`$ npm install nodemon -D`
+
+`$ npm install knex --save`
+
+`$ npm install pg`
+
+`$ npm install cors`
+
+`$ npm install dotenv`
+
+`$ npm install bcrypt`
+
+`$ npm install jsonwebtoken`
+
+# Execute a aplicação em modo de desenvolvimento
+$ npm run dev
+
+# O servidor inciará na porta:3000 - acesse http://localhost:3000  
+
+```
+<p align="center">
+  <a href="https://github.com/cubos-academy/academy-template-readme-projects" target="_blank"><img src="https://insomnia.rest/images/run.svg" alt="Run in Insomnia"></a>
+</p>
+
+
+
+## 👨‍💻 Contribuidores
+<table>
+  <tr>
+    <td align="center"><a href=""><img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-2/blob/main/IMG_00-16.jpg" width="100px;" alt=""/><br /><sub><b>Paula Santoro </b></sub></a><br /><a href="https://cubos.academy/" title="">👨‍💻</a></td>
+  </tr>
+</table>
+
+## 💪 Como contribuir para o projeto
+
+1. Faça um **fork** do projeto.
+2. Crie uma nova branch com as suas alterações: `git checkout -b my-feature`
+3. Salve as alterações e crie uma mensagem de commit contando o que você fez: `git commit -m "feature: My new feature"`
+4. Envie as suas alterações: `git push origin my-feature`
+> Caso tenha alguma dúvida confira este [guia de como contribuir no GitHub](./CONTRIBUTING.md)
+
+---
+## 🧙‍♂️ Autor
+ <img style="border-radius: 50%;" src="https://media.licdn.com/dms/image/D4D03AQEDfulqSVXZqw/profile-displayphoto-shrink_200_200/0/1674667231041?e=1688601600&v=beta&t=C-f9fp3xJDwXm1u4c6eMwpWfVIyW0eCTDAKGIyNdRJA" width="100px;" alt=""/>
+ <br /> <sub><b>Paula Santoro</b></sub></a> <a href="" title="">✨</a>
+ <br />
+
+---
