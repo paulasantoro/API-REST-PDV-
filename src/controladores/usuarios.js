@@ -66,7 +66,6 @@ const loginUsuario = async (req, res) => {
 	}
 }
 
-
 const detalharPerfil = async (req, res) => {
 	const { id } = req.usuario
 	try {
@@ -109,9 +108,6 @@ const editarPerfil = async (req, res) => {
 		return res.status(500).json({ mensagem: 'Erro interno no servidor' })
 	}
 };
-
-
-
 
 
 module.exports = {

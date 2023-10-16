@@ -15,9 +15,11 @@ const rotas = express();
 rotas.get("/categoria", listarCategorias)
 rotas.post("/usuario", cadastrarUsuario);
 rotas.post("/login", loginUsuario);
+
 rotas.use(verificarLogin);
 
-rotas.get("/usuario", detalharPerfil);
 rotas.put("/usuario", editarPerfil);
+rotas.get("/usuario", detalharPerfil);
+
 
 module.exports = rotas;
