@@ -86,8 +86,11 @@ $ npm run dev
 ## 👨‍💻 Contribuidores
 <table>
   <tr>
-    <td align="center"><a href=""><img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-2/blob/main/IMG_00-16.jpg" width="100px;" alt=""/><br /><sub><b>Paula Santoro </b></sub></a><br /><a href="https://cubos.academy/" title="">👨‍💻</a></td>
+    <td align="center"><a href=""><img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens%20/larissa%20perfil.jpeg" width="100px;" alt=""/><br /><sub><b> Larissa Evelin  </b></sub></a><br /><a href="https://cubos.academy/" title="">👨‍💻</a></td>
+  </tr> <tr> <td align="center"><a href=""><img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens%20/Laura.jpg" width="100px;" alt=""/><br /><sub><b> Milly Souza  </b></sub></a><br /><a href="https://cubos.academy/" title="">👨‍💻</a></td>
+  </tr>  <tr>  <td align="center"><a href=""><img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-2/blob/main/IMG_00-16.jpg" width="100px;" alt=""/><br /><sub><b>Paula Santoro </b></sub></a><br /><a href="https://cubos.academy/" title="">👨‍💻</a></td>
   </tr>
+  
 </table>
 
 ## 💪 Como contribuir para o projeto
@@ -103,5 +106,14 @@ $ npm run dev
  <img style="border-radius: 50%;" src="https://media.licdn.com/dms/image/D4D03AQEDfulqSVXZqw/profile-displayphoto-shrink_200_200/0/1674667231041?e=1688601600&v=beta&t=C-f9fp3xJDwXm1u4c6eMwpWfVIyW0eCTDAKGIyNdRJA" width="100px;" alt=""/>
  <br /> <sub><b>Paula Santoro</b></sub></a> <a href="" title="">✨</a>
  <br />
+
+ <img style="border-radius: 50%;" src="https://media.licdn.com/dms/image/D4D03AQEDfulqSVXZqw/profile-displayphoto-shrink_200_200/0/1674667231041?e=1688601600&v=beta&t=C-f9fp3xJDwXm1u4c6eMwpWfVIyW0eCTDAKGIyNdRJA" width="100px;" alt=""/>
+ <br /> <sub><b> Larissa Evelin </b></sub></a> <a href="" title="">✨</a>
+ <br /> 
+ 
+ <img style="border-radius: 50%;" src="https://media.licdn.com/dms/image/D4D03AQEDfulqSVXZqw/profile-displayphoto-shrink_200_200/0/1674667231041?e=1688601600&v=beta&t=C-f9fp3xJDwXm1u4c6eMwpWfVIyW0eCTDAKGIyNdRJA" width="100px;" alt=""/>
+ <br /> <sub><b> Milly Souza </b></sub></a> <a href="" title="">✨</a>
+ <br />
+
 
 ---
