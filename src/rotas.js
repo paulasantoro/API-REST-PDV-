@@ -1,22 +1,25 @@
 const express = require("express");
-const validarSenha = require("./intermediarios/validacao");
-
+const verificarLogin = require("./intermediarios/validacao");
 
 const {
     cadastrarUsuario,
-    login,
+    loginUsuario,
     detalharPerfil,
     editarPerfil,
-    listarCategorias
-} = require('./controladores/usuarios.js')
+} = require('./controladores/usuarios.js');
 
+const { listarCategorias } = require("./controladores/categorias");
 
 const rotas = express();
 
 rotas.get("/categoria", listarCategorias)
-// rotas.post("/usuario", cadastrarUsuario);  
-// rotas.post("/login", login);
-// rotas.get("/usuario", detalharPerfil); 
-// rotas.put('/usuario', editarPerfil ); 
+
+rotas.post("/usuario", cadastrarUsuario);
+rotas.post("/login", loginUsuario);
+
+rotas.use(verificarLogin);
+
+rotas.put("/usuario", editarPerfil);
+rotas.get("/usuario", detalharPerfil);
 
 module.exports = rotas;
