@@ -69,12 +69,13 @@ const loginUsuario = async (req, res) => {
 const detalharPerfil = async (req, res) => {
 	const { id } = req.usuario
 	try {
-		const resultado = await knex('usuarios').select({ id, nome, email }).where('id', id)
+		const resultado = await knex('usuarios').select('id', 'nome', 'email' ).where('id', id)
 
 		return res.status(201).json(resultado)
 	} catch (error) {
 		return res.status(500).json({ mensagem: 'Erro interno no servidor' })
 	}
+	
 }
 
 const editarPerfil = async (req, res) => {
