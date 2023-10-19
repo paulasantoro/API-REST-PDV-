@@ -37,16 +37,16 @@ rotas.use(verificarLogin);
 rotas.put("/usuario", editarPerfil);
 rotas.get("/usuario", detalharPerfil);
 
-rotas.post("cliente", cadastrarCliente);
-rotas.put("cliente/:id", editarCliente);
-rotas.get("cliente", listarClientes);
-rotas.get("cliente/:id", detalharCliente);
+rotas.post("/cliente", cadastrarCliente);
+rotas.put("/cliente/:id", editarCliente);
+rotas.get("/cliente", listarClientes);
+rotas.get("/cliente/:id", detalharCliente);
 
-rotas.post("produto", cadastrarProduto);
-rotas.put("produto/:id", editarProduto);
-rotas.get("produto", listarProdutos);
-rotas.get("produto/:id", detalharProduto);
-rotas.delete("produto/:id", excluirProduto);
+rotas.post("/produto", cadastrarProduto);
+rotas.put("/produto/:id", editarProduto);
+rotas.get("/produto", listarProdutos);
+rotas.get("/produto/:id", detalharProduto);
+rotas.delete("/produto/:id", excluirProduto);
 
 
 module.exports = rotas;
