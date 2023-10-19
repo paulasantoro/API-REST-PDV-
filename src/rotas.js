@@ -1,29 +1,29 @@
 const express = require("express");
 const verificarLogin = require("./intermediarios/validacao");
 
+const { listarCategorias } = require("./controladores/categorias/categorias");
+
 const {
     cadastrarUsuario,
     loginUsuario,
     detalharPerfil,
     editarPerfil,
-} = require('./controladores/usuarios.js');
+} = require('./controladores/usuarios/usuarios');
 
-const { listarCategorias } = require("./controladores/categorias");
 
-const { 
-    cadastrarCliente, 
-    editarCliente, 
-    listarClientes, 
-    detalharCliente 
-} = require("./controladores/clientes");
 
-const { 
-    cadastrarProduto, 
-    editarProduto, 
-    listarProdutos, 
-    detalharProduto, 
-    excluirProduto 
-} = require("./controladores/produtos");
+const { cadastrarCliente } = require("./controladores/clientes/cadastrarCliente");
+const { detalharCliente } = require("./controladores/clientes/detalharCliente");
+const { editarCliente } = require("./controladores/clientes/editarCliente");
+const { listarClientes } = require("./controladores/clientes/listarClientes");
+
+
+
+const { cadastrarProduto } = require("./controladores/produtos/cadastrarProduto")
+const { detalharProduto } = require("./controladores/produtos/detalharProduto")
+const { editarProduto } = require("./controladores/produtos/editarProduto")
+const { excluirProduto } = require("./controladores/produtos/excluirProduto")
+const { listarProdutos } = require("./controladores/produtos/listarProdutos")
 
 const rotas = express();
 

@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt')
-const knex = require('../database/conexao')
+const knex = require('../../database/conexao')
 const jwt = require('jsonwebtoken')
-const senhaJwt = require('../jwt')
+const senhaJwt = require('../../jwt')
 
 const cadastrarUsuario = async (req, res) => {
 	const { nome, email, senha } = req.body
@@ -69,13 +69,13 @@ const loginUsuario = async (req, res) => {
 const detalharPerfil = async (req, res) => {
 	const { id } = req.usuario
 	try {
-		const resultado = await knex('usuarios').select('id', 'nome', 'email' ).where('id', id)
+		const resultado = await knex('usuarios').select('id', 'nome', 'email').where('id', id)
 
 		return res.status(201).json(resultado)
 	} catch (error) {
 		return res.status(500).json({ mensagem: 'Erro interno no servidor' })
 	}
-	
+
 }
 
 const editarPerfil = async (req, res) => {
