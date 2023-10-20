@@ -1,5 +1,6 @@
 const knex = require('../../database/conexao')
 
+
 const cadastrarProduto = async (req, res) => {
 	const { descricao, quantidade_estoque, valor, categoria_id } = req.body;
 
@@ -39,4 +40,4 @@ const cadastrarProduto = async (req, res) => {
 
 }
 
-module.exports = cadastrarProduto
+module.exports = { cadastrarProduto };

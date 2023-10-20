@@ -5,4 +5,4 @@ const excluirProduto = async (req, res) => {
 }
 
 
-module.exports = excluirProduto
+module.exports = { excluirProduto };

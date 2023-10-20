@@ -12,10 +12,10 @@ const {
 
 
 
-const { cadastrarCliente } = require("./controladores/clientes/cadastrarCliente");
-const { detalharCliente } = require("./controladores/clientes/detalharCliente");
-const { editarCliente } = require("./controladores/clientes/editarCliente");
-const { listarClientes } = require("./controladores/clientes/listarClientes");
+// const { cadastrarCliente } = require("./controladores/clientes/cadastrarCliente");
+// const { detalharCliente } = require("./controladores/clientes/detalharCliente");
+// const { editarCliente } = require("./controladores/clientes/editarCliente");
+// const { listarClientes } = require("./controladores/clientes/listarClientes");
 
 
 
@@ -37,10 +37,10 @@ rotas.use(verificarLogin);
 rotas.put("/usuario", editarPerfil);
 rotas.get("/usuario", detalharPerfil);
 
-rotas.post("/cliente", cadastrarCliente);
-rotas.put("/cliente/:id", editarCliente);
-rotas.get("/cliente", listarClientes);
-rotas.get("/cliente/:id", detalharCliente);
+// rotas.post("/cliente", cadastrarCliente);
+// rotas.put("/cliente/:id", editarCliente);
+// rotas.get("/cliente", listarClientes);
+// rotas.get("/cliente/:id", detalharCliente);
 
 rotas.post("/produto", cadastrarProduto);
 rotas.put("/produto/:id", editarProduto);
