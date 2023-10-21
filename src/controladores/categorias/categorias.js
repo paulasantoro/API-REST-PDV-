@@ -1,4 +1,4 @@
-const knex = require('../database/conexao')
+const knex = require('../../database/conexao')
 
 const listarCategorias = async (req, res) => {
     try {
@@ -6,11 +6,9 @@ const listarCategorias = async (req, res) => {
 
         return res.status(200).json(categorias)
     } catch (error) {
-        return res.status(500).json(error.message)
+        return res.status(500).json({ mensagem: 'Erro interno no servidor' })
     }
 };
 
 
-module.exports = {
-    listarCategorias
-}
+module.exports = listarCategorias

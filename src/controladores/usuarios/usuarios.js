@@ -1,7 +1,7 @@
 const bcrypt = require('bcrypt')
-const knex = require('../database/conexao')
+const knex = require('../../database/conexao')
 const jwt = require('jsonwebtoken')
-const senhaJwt = require('../jwt')
+const senhaJwt = require('../../jwt')
 
 const cadastrarUsuario = async (req, res) => {
 	const { nome, email, senha } = req.body
@@ -19,7 +19,7 @@ const cadastrarUsuario = async (req, res) => {
 			return res.status(400).json({ mensagem: 'O senha é Obrigatória' })
 		}
 
-		const emailExistente = await knex('usuarios').where({email})
+		const emailExistente = await knex('usuarios').where({ email })
 
 
 		if (emailExistente.length > 0) {
@@ -30,12 +30,13 @@ const cadastrarUsuario = async (req, res) => {
 
 		const senhaCriptografada = await bcrypt.hash(senha, 10);
 
-		const cliente = await knex('usuarios').insert({ nome, email, senha:senhaCriptografada } ).returning('*')
-		
+		const cliente = await knex('usuarios').insert({ nome, email, senha: senhaCriptografada }).returning('*')
+
+		delete cliente[0].senha
 
 		return res.status(201).json(cliente)
 	} catch (error) {
-		return res.status(500).json(error.message)
+		return res.status(500).json({ mensagem: 'Erro interno no servidor' })
 	}
 }
 
@@ -61,51 +62,63 @@ const loginUsuario = async (req, res) => {
 		);
 		return res.status(200).send({ token });
 
-	} catch (error) {
-		return res.status(500).json({ error: error.message })
-	}
+    } catch (error) {
+        return res.status(500).json({ mensagem: 'Erro interno no servidor' })
+    }
 }
 
-
 const detalharPerfil = async (req, res) => {
-	const { id } = req.params
+	const { id } = req.usuario
+	try {
+		const resultado = await knex('usuarios').select('id', 'nome', 'email').where('id', id)
+
+		return res.status(201).json(resultado)
+	} catch (error) {
+		return res.status(500).json({ mensagem: 'Erro interno no servidor' })
+	}
 }
 
 const editarPerfil = async (req, res) => {
 	const { nome, email, senha } = req.body;
 	const { id } = req.usuario;
+	const { ids } = req.params
 
-	if (!nome || !email || !senha) {
-		return res.status(400).json({ message: "O campo nome, email e senha são obrigatorios" })
-	}
+
+
+	
 
 	try {
 
-		const emailEncontrado = await knex('usuarios').where('email', email);
+		const idEncontrado = await knex('usuarios').where('id', ids);
 
-		if (emailEncontrado.length > 0 && id !== emailEncontrado[0].id) {
+		if (idEncontrado[0].id !== id) {
+			return res.status(400).json({ message: "Não Autorizado" });
+		}
+
+		const emailEncontrado = await knex('usuarios').where({email});
+
+		if (emailEncontrado.length > 0) {
 			return res.status(400).json({ message: "Esse e-mail já está em uso" })
 		}
 
+
 		const senhaHashed = await bcrypt.hash(senha, 10);
 
-		await knex('usuarios').where('id', id).update({
-			nome,
-			email,
-			senha: senhaHashed
+		await knex('usuarios')
+		.update({
+		nome,
+		email,
+		senha: senhaHashed
 		})
+		.where({id});
 
-		return res.status(204).send();
+		return res.status(204).json();
 
 
 	} catch (error) {
-		return res.status(500).json({ error: error.message })
+		return res.status(500).json({ mensagem: 'Erro interno no servidor' })
 	}
 };
-
-
-
-
 
 module.exports = {
 	cadastrarUsuario,
