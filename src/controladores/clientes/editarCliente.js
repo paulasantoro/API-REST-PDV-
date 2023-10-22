@@ -15,21 +15,24 @@ const editarCliente = async (req, res) => {
     }
 
     try {
-        const clienteExiste = await knex('clientes').where({id}).first();
+        const clienteExiste = await knex("clientes").where({id}).first();
+		if (!clienteExiste) {
+			return res.status(404).json({mensagem: "Cliente não encontrado"});
+		}
+		if (email) {
+            const emailExistente = await knex("clientes").where({email}).first();
+			if (clienteExiste.email !== email && emailExistente) {
+				return res.status(400).json("O email já está em uso por outro cliente");
+			}
+						
+		}
+		if (cpf) {
+			const cpfExistente = await knex("clientes").where({cpf}).first();
 
-        const emailExiste = await knex('clientes').where({email}).first();
-
-        const cpfExiste = await knex('clientes').where({cpf}).first();
-
-        if (!clienteExiste) {
-            return res.status(400).json('Cliente não encontrado')
-        }
-        if (emailExiste) {
-            return res.status(400).json('Email Já cadastrado')
-        }
-        if (cpfExiste) {
-            return res.status(400).json('Cpf Já cadastrado')
-        }
+			if (clienteExiste.cpf !== cpf && cpfExistente) {
+				return res.status(400).json("Cpf já cadastrado");
+			}
+		}
 
         const clinteAtualizado = await knex('clientes')
         .update({nome, email, cpf, cep, rua, numero, bairro, cidade, estado})
@@ -42,6 +45,7 @@ const editarCliente = async (req, res) => {
         return res.status(200).json('usuário atualizado com sucesso!');
 
     } catch (error) {
+        console.log(error.message);
         return res.status(500).json({ mensagem: 'Erro interno no servidor' })
     }
 }
