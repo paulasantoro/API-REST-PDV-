@@ -30,6 +30,10 @@ Nossa API já é capaz de listar categorias, cadastrar usuários e permitir a au
 - [x] Efetuar login do usuário
 - [x] Detalhar perfil do usuário logado
 - [x] Editar perfil do usuário logado
+- [x] Cadastrar produto
+- [x] Editar produto
+
+
 ---
 
 ## 🛣️ Como executar o projeto
@@ -95,7 +99,7 @@ $ npm run dev
 
          🔗url insomnia: http://localhost:3000/usuario
 
-<img style="border-radius: 40%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens%20/rotas%20imagens/cadastrar%20usuario%20.png" width="1000px;" alt=""/>
+<img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens/cadastrarUsuario%20.png" width="1000px;" alt=""/>
 
 
 #### Rota 2 - Login usuario: 
@@ -110,7 +114,7 @@ $ npm run dev
 
            🔗url insomnia: http://localhost:3000/login
 
-<img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens%20/rotas%20imagens/login%20usuario.png" width="1000px;" alt=""/>
+<img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens/loginUsuario.png" width="1000px;" alt=""/>
 
 #### Rota 3 - Detalhar usuario: 
 
@@ -124,7 +128,7 @@ $ npm run dev
 
          🔗url insomnia: http://localhost:3000/usuario
 
-<img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens%20/rotas%20imagens/detalhar%20usuario.png" width="1000px;" alt=""/>
+<img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens/detalharUsuario.png" width="1000px;" alt=""/>
 
 #### Rota 4 - Editar usuario: 
 
@@ -138,10 +142,10 @@ $ npm run dev
 
        🔗url insomnia: http://localhost:3000/usuario
 
-<img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens%20/rotas%20imagens/editar%20usuario.png" width="1000px;" alt=""/>
+<img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens/editarUsuario.png" width="1000px;" alt=""/>
 
 
-#### 🔎 listar categorias: 
+#### Rota 5 - Listar categorias: 
 
      No imsomnia crie uma http request GET, copie e cole o token no Bearer token , conforme na imagem a baixo. 
 
@@ -153,8 +157,148 @@ $ npm run dev
 
         🔗url insomnia: http://localhost:3000/categoria
 
-<img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens%20/rotas%20imagens/listar%20categorias.png" width="1000px;" alt=""/>
+<img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens/listarCategorias.png" width="1000px;" alt=""/>
 
+#### Rota 6 - Cadastrar produto: 
+
+     No imsomnia crie uma http request POST, copie e cole o token no Bearer token , conforme na imagem a baixo. 
+
+        ✅ Em caso de sucesso, o produto será cadastrado e um objeto json com informações será retornado. 
+
+        ❌ não é possível usar token inválido.
+
+        ❌ não é possível vincular produto a uma categoria inexistente.
+
+
+        🔗url deploy:
+
+        🔗url insomnia: http://localhost:3000/produto
+
+<img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens/cadastrarProduto.png" width="1000px;" alt=""/>
+
+#### Rota 7 - Editar produto: 
+
+     No imsomnia crie uma http request PUT, copie e cole o token no Bearer token , conforme na imagem a baixo. 
+
+        ✅ Em caso de sucesso, o produto será atualizado e um objeto json com informações será retornado. 
+
+        ❌ não é possível usar token inválido.
+
+        ❌ não é possível vincular produto a uma categoria inexistente.
+
+
+        🔗url deploy:
+
+        🔗url insomnia: http://localhost:3000/produto/:id
+
+<img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens/editarProduto.png" width="1000px;" alt=""/>
+
+#### Rota 8 - Listar produtos: 
+
+     No imsomnia crie uma http request GET, copie e cole o token no Bearer token , conforme na imagem a baixo. 
+
+        ✅ Em caso de sucesso, o(s) produtos(s) será(ão) listados. 
+	
+	✅ Se a query categoria_id do produto desejado não for informada, todos os produtos serão listados. 
+
+        🔗url deploy:
+
+        🔗url insomnia: http://localhost:3000/produto
+
+<img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens/listarProdutos.png" width="1000px;" alt=""/>
+
+#### Rota 9 - Detalhar produto: 
+
+     No imsomnia crie uma http request GET, copie e cole o token no Bearer token , conforme na imagem a baixo. 
+
+        ✅ Em caso de sucesso, um objeto json com informações do produto será retornado. 
+	
+        🔗url deploy:
+
+        🔗url insomnia: http://localhost:3000/produto/:id
+
+<img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens/detalharProduto.png" width="1000px;" alt=""/>
+
+#### Rota 10 - Excluir produto: 
+
+     No imsomnia crie uma http request DELETE, copie e cole o token no Bearer token , conforme na imagem a baixo. 
+
+        ✅ Em caso de sucesso, o produto será excluído. 
+	
+        🔗url deploy:
+
+        🔗url insomnia: http://localhost:3000/produto/:id
+
+<img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens/deletarProduto.png" width="1000px;" alt=""/>
+
+#### Rota 11 - Cadastrar Cliente: 
+
+     No imsomnia crie uma http request POST, copie e cole o token no Bearer token , conforme na imagem a baixo. 
+
+        ✅ Em caso de sucesso, um objeto json com informações do cliente será retornado. 
+
+         ❌ não é possível cadastrar sem nome, email e cpf. Não é permitido cadastro de cpf e email duplicado.
+	
+        🔗url deploy:
+
+        🔗url insomnia: http://localhost:3000/cliente
+
+<img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens/cadastrarCliente.png" width="1000px;" alt=""/>
+
+#### Rota 12 - Editar Cliente: 
+
+     No imsomnia crie uma http request PUT, copie e cole o token no Bearer token , conforme na imagem a baixo. 
+
+        ✅ Em caso de sucesso, um objeto json com informações do cliente será retornado. 
+
+         ❌  Não é permitido atualizar para email ou cpf em uso por outro cliente.
+	
+        🔗url deploy:
+
+        🔗url insomnia: http://localhost:3000/cliente/:id
+
+<img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens/editarCliente.png" width="1000px;" alt=""/>
+
+
+#### Rota 13 - Listar Clientes: 
+
+     No imsomnia crie uma http request GET, copie e cole o token no Bearer token , conforme na imagem a baixo. 
+
+        ✅ Em caso de sucesso, um objeto json com informações do cliente será retornado. 
+
+        🔗url deploy:
+
+        🔗url insomnia: http://localhost:3000/cliente
+
+<img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens/listarClientes.png" width="1000px;" alt=""/>
+
+
+#### Rota 14 - Detalhar Cliente: 
+
+     No imsomnia crie uma http request GET, copie e cole o token no Bearer token , conforme na imagem a baixo. 
+
+        ✅ Em caso de sucesso, um objeto json com informações do cliente será retornado. 
+
+        🔗url deploy:
+
+        🔗url insomnia: http://localhost:3000/cliente/:id
+
+<img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens/detalharCliente.png" width="1000px;" alt=""/>
+
+
+#### Rota 12 - Editar Cliente: 
+
+     No imsomnia crie uma http request PUT, copie e cole o token no Bearer token , conforme na imagem a baixo. 
+
+        ✅ Em caso de sucesso, um objeto json com informações do cliente será retornado. 
+
+         ❌  Não é permitido atualizar para email ou cpf em uso por outro cliente.
+	
+        🔗url deploy:
+
+        🔗url insomnia: http://localhost:3000/cliente/:id
+
+<img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens/editarCliente.png" width="1000px;" alt=""/>
 
 ## 👨‍💻 Contribuidores
 <table>
