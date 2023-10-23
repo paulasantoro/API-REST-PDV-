@@ -1,5 +1,6 @@
 const knex = require('../../database/conexao')
 
+
 const cadastrarProduto = async (req, res) => {
 	const { descricao, quantidade_estoque, valor, categoria_id } = req.body;
 
@@ -31,12 +32,10 @@ const cadastrarProduto = async (req, res) => {
 			return res.status(404).json("O produto não foi cadastrado.")
 		}
 
-
 		return res.status(200).json(produtoCadastrado[0])
-	} catch (error) {
-		return res.status(500).json(error.message)
-	}
-
+    } catch (error) {
+        return res.status(500).json({ mensagem: 'Erro interno no servidor' })
+    }
 }
 
-module.exports = cadastrarProduto
+module.exports = cadastrarProduto;

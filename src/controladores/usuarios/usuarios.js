@@ -32,6 +32,7 @@ const cadastrarUsuario = async (req, res) => {
 
 		const cliente = await knex('usuarios').insert({ nome, email, senha: senhaCriptografada }).returning('*')
 
+		delete cliente[0].senha
 
 		return res.status(201).json(cliente)
 	} catch (error) {
@@ -61,9 +62,9 @@ const loginUsuario = async (req, res) => {
 		);
 		return res.status(200).send({ token });
 
-	} catch (error) {
-		return res.status(500).json({ mensagem: 'Erro interno no servidor' })
-	}
+    } catch (error) {
+        return res.status(500).json({ mensagem: 'Erro interno no servidor' })
+    }
 }
 
 const detalharPerfil = async (req, res) => {
@@ -75,41 +76,49 @@ const detalharPerfil = async (req, res) => {
 	} catch (error) {
 		return res.status(500).json({ mensagem: 'Erro interno no servidor' })
 	}
-
 }
 
 const editarPerfil = async (req, res) => {
 	const { nome, email, senha } = req.body;
 	const { id } = req.usuario;
+	const { ids } = req.params
 
-	if (!nome || !email || !senha) {
-		return res.status(400).json({ message: "O campo nome, email e senha são obrigatorios" })
-	}
+
+
+	
 
 	try {
 
-		const emailEncontrado = await knex('usuarios').where('email', email);
+		const idEncontrado = await knex('usuarios').where('id', ids);
 
-		if (emailEncontrado.length > 0 && id !== emailEncontrado[0].id) {
+		if (idEncontrado[0].id !== id) {
+			return res.status(400).json({ message: "Não Autorizado" });
+		}
+
+		const emailEncontrado = await knex('usuarios').where({email});
+
+		if (emailEncontrado.length > 0) {
 			return res.status(400).json({ message: "Esse e-mail já está em uso" })
 		}
 
+
 		const senhaHashed = await bcrypt.hash(senha, 10);
 
-		await knex('usuarios').where('id', id).update({
-			nome,
-			email,
-			senha: senhaHashed
+		await knex('usuarios')
+		.update({
+		nome,
+		email,
+		senha: senhaHashed
 		})
+		.where({id});
 
-		return res.status(204).send();
+		return res.status(204).json();
 
 
 	} catch (error) {
 		return res.status(500).json({ mensagem: 'Erro interno no servidor' })
 	}
 };
-
 
 module.exports = {
 	cadastrarUsuario,

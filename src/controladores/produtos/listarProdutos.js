@@ -14,7 +14,7 @@ const listarProdutos = async (req, res) => {
         return res.status(200).json(resultado);
 
     } catch (error) {
-        return res.status(400).json(error.message)
+        return res.status(500).json({ mensagem: 'Erro interno no servidor' })
     }
 }
-module.exports = listarProdutos
+module.exports =  listarProdutos;

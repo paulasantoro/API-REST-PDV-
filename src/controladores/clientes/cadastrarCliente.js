@@ -11,8 +11,8 @@ const cadastrarCliente = async (req, res) => {
 		}
 
 		const clienteCadastrado = await knex('clientes')
-			.where('email', email)
-			.orWhere('cpf', cpf)
+			.where({email})
+			.orWhere({cpf})
 			.first();
 
 		if (clienteCadastrado) {
@@ -29,16 +29,14 @@ const cadastrarCliente = async (req, res) => {
 			bairro,
 			cidade,
 			estado
-
 		})
-
-			.returning('*');
+		.returning('*');
 
 		return res.status(201).json(clienteNovo);
 
-	} catch (error) {
-		return res.status(500).json(error.message);
-	}
+    } catch (error) {
+        return res.status(500).json({ mensagem: 'Erro interno no servidor' })
+    }
 };
 
 module.exports = cadastrarCliente
