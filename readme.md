@@ -19,7 +19,7 @@
 
 Neste desafio do Módulo 5 da Cubos Academy, nossa equipe está empenhada em criar uma API para um PDV (Ponto de Venda), um projeto inicial que servirá como base para futuras funcionalidades emocionantes.
 Iniciamos criando um banco de dados PostgreSQL chamado "pdv" e definindo tabelas essenciais, como "usuarios" e "categorias". Cada registro possui um campo "id" como chave primária e não pode ser editado após a criação. Valor monetário é representado em centavos para precisão e uniformidade.
-Nossa API já é capaz de listar categorias, cadastrar usuários e permitir a autenticação. Os usuários podem criar contas, fazer login, visualizar e editar seus próprios perfis.
+Nossa API já é capaz de listar categorias, cadastrar usuários e permitir a autenticação. Os usuários podem criar contas, fazer login, visualizar e editar seus próprios perfis, alem de cadastrar produtos e clientes.
 
 ---
 
@@ -30,8 +30,15 @@ Nossa API já é capaz de listar categorias, cadastrar usuários e permitir a au
 - [x] Efetuar login do usuário
 - [x] Detalhar perfil do usuário logado
 - [x] Editar perfil do usuário logado
-- [x] Cadastrar produto
-- [x] Editar produto
+- [x] Cadastrar produto com usuário logado
+- [x] Editar produto com usuário logado
+- [x] Listar produtos com usuário logado
+- [x] Detalhar produto com usuário logado
+- [x] Excluir produto com usuário logado
+- [x] Cadastrar cliente com usuário logado
+- [x] detalhar cliente com usuário logado
+- [x] atualizar cliente com usuário logado
+- [x] listar clientes com usuário logado
 
 
 ---
@@ -170,7 +177,7 @@ $ npm run dev
         ❌ não é possível vincular produto a uma categoria inexistente.
 
 
-        🔗url deploy:
+        🔗url deploy: https://busy-jade-salamander-toga.cyclic.app/produto
 
         🔗url insomnia: http://localhost:3000/produto
 
@@ -178,7 +185,7 @@ $ npm run dev
 
 #### Rota 7 - Editar produto: 
 
-     No imsomnia crie uma http request PUT, copie e cole o token no Bearer token , conforme na imagem a baixo. 
+     No imsomnia crie uma http request PUT, copie e cole o token no Bearer token , conforme na imagem a baixo.Informe o id do produto desejado.
 
         ✅ Em caso de sucesso, o produto será atualizado e um objeto json com informações será retornado. 
 
@@ -187,7 +194,7 @@ $ npm run dev
         ❌ não é possível vincular produto a uma categoria inexistente.
 
 
-        🔗url deploy:
+        🔗url deploy: https://busy-jade-salamander-toga.cyclic.app/produto/8
 
         🔗url insomnia: http://localhost:3000/produto/:id
 
@@ -201,7 +208,7 @@ $ npm run dev
 	
 	✅ Se a query categoria_id do produto desejado não for informada, todos os produtos serão listados. 
 
-        🔗url deploy:
+        🔗url deploy: https://busy-jade-salamander-toga.cyclic.app/produto
 
         🔗url insomnia: http://localhost:3000/produto
 
@@ -209,11 +216,11 @@ $ npm run dev
 
 #### Rota 9 - Detalhar produto: 
 
-     No imsomnia crie uma http request GET, copie e cole o token no Bearer token , conforme na imagem a baixo. 
+     No imsomnia crie uma http request GET, copie e cole o token no Bearer token , conforme na imagem a baixo. Informe o id do produto desejo no parametro da rota.
 
-        ✅ Em caso de sucesso, um objeto json com informações do produto será retornado. 
+        ✅ Em caso de sucess, um objeto json com informações do produto será retornado. 
 	
-        🔗url deploy:
+        🔗url deploy: https://busy-jade-salamander-toga.cyclic.app/produto/8
 
         🔗url insomnia: http://localhost:3000/produto/:id
 
@@ -221,11 +228,11 @@ $ npm run dev
 
 #### Rota 10 - Excluir produto: 
 
-     No imsomnia crie uma http request DELETE, copie e cole o token no Bearer token , conforme na imagem a baixo. 
+     No imsomnia crie uma http request DELETE, copie e cole o token no Bearer token , conforme na imagem a baixo. Informe o id no parametro da rota.
 
         ✅ Em caso de sucesso, o produto será excluído. 
 	
-        🔗url deploy:
+        🔗url deploy: https://busy-jade-salamander-toga.cyclic.app/produto/8
 
         🔗url insomnia: http://localhost:3000/produto/:id
 
@@ -239,7 +246,7 @@ $ npm run dev
 
          ❌ não é possível cadastrar sem nome, email e cpf. Não é permitido cadastro de cpf e email duplicado.
 	
-        🔗url deploy:
+        🔗url deploy: https://busy-jade-salamander-toga.cyclic.app/cliente
 
         🔗url insomnia: http://localhost:3000/cliente
 
@@ -247,13 +254,13 @@ $ npm run dev
 
 #### Rota 12 - Editar Cliente: 
 
-     No imsomnia crie uma http request PUT, copie e cole o token no Bearer token , conforme na imagem a baixo. 
+     No imsomnia crie uma http request PUT, copie e cole o token no Bearer token , conforme na imagem a baixo. Informe o id no parametro da rota.
 
         ✅ Em caso de sucesso, um objeto json com informações do cliente será retornado. 
 
          ❌  Não é permitido atualizar para email ou cpf em uso por outro cliente.
 	
-        🔗url deploy:
+        🔗url deploy: https://busy-jade-salamander-toga.cyclic.app/cliente/2
 
         🔗url insomnia: http://localhost:3000/cliente/:id
 
@@ -266,7 +273,7 @@ $ npm run dev
 
         ✅ Em caso de sucesso, um objeto json com informações do cliente será retornado. 
 
-        🔗url deploy:
+        🔗url deploy: https://busy-jade-salamander-toga.cyclic.app/cliente
 
         🔗url insomnia: http://localhost:3000/cliente
 
@@ -279,26 +286,13 @@ $ npm run dev
 
         ✅ Em caso de sucesso, um objeto json com informações do cliente será retornado. 
 
-        🔗url deploy:
+        🔗url deploy: https://busy-jade-salamander-toga.cyclic.app/cliente/9
 
         🔗url insomnia: http://localhost:3000/cliente/:id
 
 <img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens/detalharCliente.png" width="1000px;" alt=""/>
 
 
-#### Rota 12 - Editar Cliente: 
-
-     No imsomnia crie uma http request PUT, copie e cole o token no Bearer token , conforme na imagem a baixo. 
-
-        ✅ Em caso de sucesso, um objeto json com informações do cliente será retornado. 
-
-         ❌  Não é permitido atualizar para email ou cpf em uso por outro cliente.
-	
-        🔗url deploy:
-
-        🔗url insomnia: http://localhost:3000/cliente/:id
-
-<img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens/editarCliente.png" width="1000px;" alt=""/>
 
 ## 👨‍💻 Contribuidores
 <table>
