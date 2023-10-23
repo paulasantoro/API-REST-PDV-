@@ -306,6 +306,7 @@ $ npm run dev
     <td align="center"><a href=""><img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens%20/larissa%20perfil.jpeg" width="100px;" alt=""/><br /><sub><b> Larissa Evelin  </b></sub></a><br /><a href="https://cubos.academy/" title="">👨‍💻</a></td>
   </tr> <tr> <td align="center"><a href=""><img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens%20/Laura.jpg" width="100px;" alt=""/><br /><sub><b> Milly Souza  </b></sub></a><br /><a href="https://cubos.academy/" title="">👨‍💻</a></td>
   </tr>  <tr>  <td align="center"><a href=""><img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-2/blob/main/IMG_00-16.jpg" width="100px;" alt=""/><br /><sub><b>Paula Santoro </b></sub></a><br /><a href="https://cubos.academy/" title="">👨‍💻</a></td>
+  </tr> </tr>  <tr>  <td align="center"><a href=""><img style="border-radius: 50%;" src="" width="100px;" alt=""/><br /><sub><b> Sara Rafaela </b></sub></a><br /><a href="https://cubos.academy/" title="">👨‍💻</a></td>
   </tr>
   
 </table>
