@@ -8,15 +8,8 @@ const cadastrarUsuario = async (req, res) => {
 
 	try {
 
-		if (!nome) {
-			return res.status(400).json({ mensagem: 'O Nome é Obrigatório' })
-		}
-		if (!email) {
-			return res.status(400).json({ mensagem: 'O email é Obrigatório' })
-		}
-
-		if (!senha) {
-			return res.status(400).json({ mensagem: 'O senha é Obrigatória' })
+		if (validarCamposObrigatorios([nome, email, senha])) {
+			return res.status(400).json({ mensagem: 'Campos obrigatórios não preenchidos' });
 		}
 
 		const emailExistente = await knex('usuarios').where({ email })
@@ -42,17 +35,24 @@ const cadastrarUsuario = async (req, res) => {
 
 const loginUsuario = async (req, res) => {
 	const { email, senha } = req.body;
+	
+	if( !email || !senha){
+		return res.status(400).json({ message: "Todos os campos são Obrigatorios" })
+	}
+
+	
+
 	try {
 		const usuario = await knex('usuarios').where('email', email).first();
 
 		if (!usuario) {
-			return res.status(401).send({ message: "Autenticação falhou" });
+			return res.status(400).send({ message: "Autenticação falhou" });
 		}
 
 		const senhaCorreta = await bcrypt.compare(senha, usuario.senha);
 
 		if (!senhaCorreta) {
-			return res.status(401).send({ message: "Autenticação falhou" });
+			return res.status(400).send({ message: "Autenticação falhou" });
 		}
 
 		const token = jwt.sign(
@@ -72,7 +72,7 @@ const detalharPerfil = async (req, res) => {
 	try {
 		const resultado = await knex('usuarios').select('id', 'nome', 'email').where('id', id)
 
-		return res.status(201).json(resultado)
+		return res.status(200).json(resultado[0])
 	} catch (error) {
 		return res.status(500).json({ mensagem: 'Erro interno no servidor' })
 	}
@@ -83,11 +83,12 @@ const editarPerfil = async (req, res) => {
 	const { id } = req.usuario;
 	const { ids } = req.params
 
-
-
-	
-
 	try {
+
+		if (!nome  || !email || !senha){
+			return res.status(400).json({ message: "Todos os campos são Obrigatorios" })
+		}
+
 
 		const idEncontrado = await knex('usuarios').where('id', ids);
 
@@ -104,19 +105,22 @@ const editarPerfil = async (req, res) => {
 
 		const senhaHashed = await bcrypt.hash(senha, 10);
 
-		await knex('usuarios')
+		const usuarioAtualizado = await knex('usuarios')
 		.update({
 		nome,
 		email,
 		senha: senhaHashed
 		})
-		.where({id});
+		.where({id}).returning('*')
 
-		return res.status(204).json();
+		delete usuarioAtualizado[0].senha
+
+		return res.status(200).json(usuarioAtualizado[0]);
 
 
 	} catch (error) {
-		return res.status(500).json({ mensagem: 'Erro interno no servidor' })
+		console.log(error.message);
+		return res.status(400).json({ mensagem: 'Erro interno no servidor' })
 	}
 };
 
