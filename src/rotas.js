@@ -20,7 +20,9 @@ const  cadastrarProduto  = require("./controladores/produtos/cadastrarProduto")
 const  detalharProduto  = require("./controladores/produtos/detalharProduto")
 const  editarProduto  = require("./controladores/produtos/editarProduto")
 const  excluirProduto  = require("./controladores/produtos/excluirProduto")
-const  listarProdutos  = require("./controladores/produtos/listarProdutos")
+const  listarProdutos  = require("./controladores/produtos/listarProdutos");
+const cadastrarPedido = require("./controladores/pedidos/cadastrarPedido");
+const listarPedido = require("./controladores/pedidos/listarPedido");
 
 const rotas = express();
 
@@ -44,5 +46,8 @@ rotas.put("/produto/:id", editarProduto);
 rotas.get("/produto", listarProdutos);
 rotas.get("/produto/:id", detalharProduto);
 rotas.delete("/produto/:id", excluirProduto);
+
+rotas.post("/pedido", cadastrarPedido);
+rotas.get("/pedido", listarPedido);
 
 module.exports = rotas;
