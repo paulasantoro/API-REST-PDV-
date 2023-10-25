@@ -19,7 +19,7 @@
 
 Neste desafio do Módulo 5 da Cubos Academy, nossa equipe está empenhada em criar uma API para um PDV (Ponto de Venda), um projeto inicial que servirá como base para futuras funcionalidades emocionantes.
 Iniciamos criando um banco de dados PostgreSQL chamado "pdv" e definindo tabelas essenciais, como "usuarios" e "categorias". Cada registro possui um campo "id" como chave primária e não pode ser editado após a criação. Valor monetário é representado em centavos para precisão e uniformidade.
-Nossa API já é capaz de listar categorias, cadastrar usuários e permitir a autenticação. Os usuários podem criar contas, fazer login, visualizar e editar seus próprios perfis.
+Nossa API já é capaz de listar categorias, cadastrar usuários e permitir a autenticação. Os usuários podem criar contas, fazer login, visualizar e editar seus próprios perfis, alem de cadastrar produtos e clientes.
 
 ---
 
@@ -30,6 +30,17 @@ Nossa API já é capaz de listar categorias, cadastrar usuários e permitir a au
 - [x] Efetuar login do usuário
 - [x] Detalhar perfil do usuário logado
 - [x] Editar perfil do usuário logado
+- [x] Cadastrar produto com usuário logado
+- [x] Editar produto com usuário logado
+- [x] Listar produtos com usuário logado
+- [x] Detalhar produto com usuário logado
+- [x] Excluir produto com usuário logado
+- [x] Cadastrar cliente com usuário logado
+- [x] detalhar cliente com usuário logado
+- [x] atualizar cliente com usuário logado
+- [x] listar clientes com usuário logado
+
+
 ---
 
 ## 🛣️ Como executar o projeto
@@ -95,7 +106,7 @@ $ npm run dev
 
          🔗url insomnia: http://localhost:3000/usuario
 
-<img style="border-radius: 40%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens%20/rotas%20imagens/cadastrar%20usuario%20.png" width="1000px;" alt=""/>
+<img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens/cadastrarUsuario%20.png" width="1000px;" alt=""/>
 
 
 #### Rota 2 - Login usuario: 
@@ -110,7 +121,7 @@ $ npm run dev
 
            🔗url insomnia: http://localhost:3000/login
 
-<img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens%20/rotas%20imagens/login%20usuario.png" width="1000px;" alt=""/>
+<img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens/loginUsuario.png" width="1000px;" alt=""/>
 
 #### Rota 3 - Detalhar usuario: 
 
@@ -124,7 +135,7 @@ $ npm run dev
 
          🔗url insomnia: http://localhost:3000/usuario
 
-<img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens%20/rotas%20imagens/detalhar%20usuario.png" width="1000px;" alt=""/>
+<img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens/detalharUsuario.png" width="1000px;" alt=""/>
 
 #### Rota 4 - Editar usuario: 
 
@@ -138,10 +149,10 @@ $ npm run dev
 
        🔗url insomnia: http://localhost:3000/usuario
 
-<img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens%20/rotas%20imagens/editar%20usuario.png" width="1000px;" alt=""/>
+<img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens/editarUsuario.png" width="1000px;" alt=""/>
 
 
-#### 🔎 listar categorias: 
+#### Rota 5 - Listar categorias: 
 
      No imsomnia crie uma http request GET, copie e cole o token no Bearer token , conforme na imagem a baixo. 
 
@@ -153,7 +164,134 @@ $ npm run dev
 
         🔗url insomnia: http://localhost:3000/categoria
 
-<img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens%20/rotas%20imagens/listar%20categorias.png" width="1000px;" alt=""/>
+<img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens/listarCategorias.png" width="1000px;" alt=""/>
+
+#### Rota 6 - Cadastrar produto: 
+
+     No imsomnia crie uma http request POST, copie e cole o token no Bearer token , conforme na imagem a baixo. 
+
+        ✅ Em caso de sucesso, o produto será cadastrado e um objeto json com informações será retornado. 
+
+        ❌ não é possível usar token inválido.
+
+        ❌ não é possível vincular produto a uma categoria inexistente.
+
+
+        🔗url deploy: https://busy-jade-salamander-toga.cyclic.app/produto
+
+        🔗url insomnia: http://localhost:3000/produto
+
+<img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens/cadastrarProduto.png" width="1000px;" alt=""/>
+
+#### Rota 7 - Editar produto: 
+
+     No imsomnia crie uma http request PUT, copie e cole o token no Bearer token , conforme na imagem a baixo.Informe o id do produto desejado.
+
+        ✅ Em caso de sucesso, o produto será atualizado e um objeto json com informações será retornado. 
+
+        ❌ não é possível usar token inválido.
+
+        ❌ não é possível vincular produto a uma categoria inexistente.
+
+
+        🔗url deploy: https://busy-jade-salamander-toga.cyclic.app/produto/8
+
+        🔗url insomnia: http://localhost:3000/produto/:id
+
+<img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens/editarProduto.png" width="1000px;" alt=""/>
+
+#### Rota 8 - Listar produtos: 
+
+     No imsomnia crie uma http request GET, copie e cole o token no Bearer token , conforme na imagem a baixo. 
+
+        ✅ Em caso de sucesso, o(s) produtos(s) será(ão) listados. 
+	
+	✅ Se a query categoria_id do produto desejado não for informada, todos os produtos serão listados. 
+
+        🔗url deploy: https://busy-jade-salamander-toga.cyclic.app/produto
+
+        🔗url insomnia: http://localhost:3000/produto
+
+<img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens/listarProdutos.png" width="1000px;" alt=""/>
+
+#### Rota 9 - Detalhar produto: 
+
+     No imsomnia crie uma http request GET, copie e cole o token no Bearer token , conforme na imagem a baixo. Informe o id do produto desejo no parametro da rota.
+
+        ✅ Em caso de sucess, um objeto json com informações do produto será retornado. 
+	
+        🔗url deploy: https://busy-jade-salamander-toga.cyclic.app/produto/8
+
+        🔗url insomnia: http://localhost:3000/produto/:id
+
+<img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens/detalharProduto.png" width="1000px;" alt=""/>
+
+#### Rota 10 - Excluir produto: 
+
+     No imsomnia crie uma http request DELETE, copie e cole o token no Bearer token , conforme na imagem a baixo. Informe o id no parametro da rota.
+
+        ✅ Em caso de sucesso, o produto será excluído. 
+	
+        🔗url deploy: https://busy-jade-salamander-toga.cyclic.app/produto/8
+
+        🔗url insomnia: http://localhost:3000/produto/:id
+
+<img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens/deletarProduto.png" width="1000px;" alt=""/>
+
+#### Rota 11 - Cadastrar Cliente: 
+
+     No imsomnia crie uma http request POST, copie e cole o token no Bearer token , conforme na imagem a baixo. 
+
+        ✅ Em caso de sucesso, um objeto json com informações do cliente será retornado. 
+
+         ❌ não é possível cadastrar sem nome, email e cpf. Não é permitido cadastro de cpf e email duplicado.
+	
+        🔗url deploy: https://busy-jade-salamander-toga.cyclic.app/cliente
+
+        🔗url insomnia: http://localhost:3000/cliente
+
+<img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens/cadastrarCliente.png" width="1000px;" alt=""/>
+
+#### Rota 12 - Editar Cliente: 
+
+     No imsomnia crie uma http request PUT, copie e cole o token no Bearer token , conforme na imagem a baixo. Informe o id no parametro da rota.
+
+        ✅ Em caso de sucesso, um objeto json com informações do cliente será retornado. 
+
+         ❌  Não é permitido atualizar para email ou cpf em uso por outro cliente.
+	
+        🔗url deploy: https://busy-jade-salamander-toga.cyclic.app/cliente/2
+
+        🔗url insomnia: http://localhost:3000/cliente/:id
+
+<img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens/editarCliente.png" width="1000px;" alt=""/>
+
+
+#### Rota 13 - Listar Clientes: 
+
+     No imsomnia crie uma http request GET, copie e cole o token no Bearer token , conforme na imagem a baixo. 
+
+        ✅ Em caso de sucesso, um objeto json com informações do cliente será retornado. 
+
+        🔗url deploy: https://busy-jade-salamander-toga.cyclic.app/cliente
+
+        🔗url insomnia: http://localhost:3000/cliente
+
+<img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens/listarClientes.png" width="1000px;" alt=""/>
+
+
+#### Rota 14 - Detalhar Cliente: 
+
+     No imsomnia crie uma http request GET, copie e cole o token no Bearer token , conforme na imagem a baixo. 
+
+        ✅ Em caso de sucesso, um objeto json com informações do cliente será retornado. 
+
+        🔗url deploy: https://busy-jade-salamander-toga.cyclic.app/cliente/9
+
+        🔗url insomnia: http://localhost:3000/cliente/:id
+
+<img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens/detalharCliente.png" width="1000px;" alt=""/>
+
 
 
 ## 👨‍💻 Contribuidores
@@ -162,6 +300,7 @@ $ npm run dev
     <td align="center"><a href=""><img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens%20/larissa%20perfil.jpeg" width="100px;" alt=""/><br /><sub><b> Larissa Evelin  </b></sub></a><br /><a href="https://cubos.academy/" title="">👨‍💻</a></td>
   </tr> <tr> <td align="center"><a href=""><img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens%20/Laura.jpg" width="100px;" alt=""/><br /><sub><b> Milly Souza  </b></sub></a><br /><a href="https://cubos.academy/" title="">👨‍💻</a></td>
   </tr>  <tr>  <td align="center"><a href=""><img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-2/blob/main/IMG_00-16.jpg" width="100px;" alt=""/><br /><sub><b>Paula Santoro </b></sub></a><br /><a href="https://cubos.academy/" title="">👨‍💻</a></td>
+  </tr> </tr>  <tr>  <td align="center"><a href=""><img style="border-radius: 50%;" src="" width="100px;" alt=""/><br /><sub><b> Sara Rafaela </b></sub></a><br /><a href="https://cubos.academy/" title="">👨‍💻</a></td>
   </tr>
   
 </table>
