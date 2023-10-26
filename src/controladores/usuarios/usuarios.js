@@ -7,8 +7,7 @@ const cadastrarUsuario = async (req, res) => {
 	const { nome, email, senha } = req.body
 
 	try {
-
-		if (validarCamposObrigatorios([nome, email, senha])) {
+		if (!nome || !senha || !email) {
 			return res.status(400).json({ mensagem: 'Campos obrigatórios não preenchidos' });
 		}
 
@@ -29,18 +28,19 @@ const cadastrarUsuario = async (req, res) => {
 
 		return res.status(201).json(cliente)
 	} catch (error) {
+		console.log(error.message)
 		return res.status(500).json({ mensagem: 'Erro interno no servidor' })
 	}
 }
 
 const loginUsuario = async (req, res) => {
 	const { email, senha } = req.body;
-	
-	if( !email || !senha){
+
+	if (!email || !senha) {
 		return res.status(400).json({ message: "Todos os campos são Obrigatorios" })
 	}
 
-	
+
 
 	try {
 		const usuario = await knex('usuarios').where('email', email).first();
@@ -62,9 +62,10 @@ const loginUsuario = async (req, res) => {
 		);
 		return res.status(200).send({ token });
 
-    } catch (error) {
-        return res.status(500).json({ mensagem: 'Erro interno no servidor' })
-    }
+	} catch (error) {
+		console.log(error.message)
+		return res.status(500).json({ mensagem: 'Erro interno no servidor' })
+	}
 }
 
 const detalharPerfil = async (req, res) => {
@@ -85,7 +86,7 @@ const editarPerfil = async (req, res) => {
 
 	try {
 
-		if (!nome  || !email || !senha){
+		if (!nome || !email || !senha) {
 			return res.status(400).json({ message: "Todos os campos são Obrigatorios" })
 		}
 
@@ -96,7 +97,7 @@ const editarPerfil = async (req, res) => {
 			return res.status(400).json({ message: "Não Autorizado" });
 		}
 
-		const emailEncontrado = await knex('usuarios').where({email});
+		const emailEncontrado = await knex('usuarios').where({ email });
 
 		if (emailEncontrado.length > 0) {
 			return res.status(400).json({ message: "Esse e-mail já está em uso" })
@@ -106,12 +107,12 @@ const editarPerfil = async (req, res) => {
 		const senhaHashed = await bcrypt.hash(senha, 10);
 
 		const usuarioAtualizado = await knex('usuarios')
-		.update({
-		nome,
-		email,
-		senha: senhaHashed
-		})
-		.where({id}).returning('*')
+			.update({
+				nome,
+				email,
+				senha: senhaHashed
+			})
+			.where({ id }).returning('*')
 
 		delete usuarioAtualizado[0].senha
 

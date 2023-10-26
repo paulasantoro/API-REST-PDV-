@@ -10,7 +10,8 @@ const knex = require('knex')({
 
         ssl: { rejectUnauthorized: false },
     },
-debug: true,
+    useNullAsDefault: true,
+    debug: true,
 });
 
 module.exports = knex;

@@ -1,7 +1,8 @@
 const express = require("express");
 const verificarLogin = require("./intermediarios/validacao");
+const multer = require('./multer')
 
-const listarCategorias  = require("./controladores/categorias/categorias");
+const listarCategorias = require("./controladores/categorias/categorias");
 
 const {
     cadastrarUsuario,
@@ -11,16 +12,16 @@ const {
 } = require('./controladores/usuarios/usuarios');
 
 
-const cadastrarCliente  = require("./controladores/clientes/cadastrarCliente");
-const  detalharCliente  = require("./controladores/clientes/detalharCliente");
-const editarCliente  = require('./controladores/clientes/editarCliente');
-const  listarClientes = require("./controladores/clientes/listarClientes");
+const cadastrarCliente = require("./controladores/clientes/cadastrarCliente");
+const detalharCliente = require("./controladores/clientes/detalharCliente");
+const editarCliente = require('./controladores/clientes/editarCliente');
+const listarClientes = require("./controladores/clientes/listarClientes");
 
-const  cadastrarProduto  = require("./controladores/produtos/cadastrarProduto")
-const  detalharProduto  = require("./controladores/produtos/detalharProduto")
-const  editarProduto  = require("./controladores/produtos/editarProduto")
-const  excluirProduto  = require("./controladores/produtos/excluirProduto")
-const  listarProdutos  = require("./controladores/produtos/listarProdutos");
+const cadastrarProduto = require('./controladores/produtos/cadastrarProduto')
+const detalharProduto = require("./controladores/produtos/detalharProduto")
+const editarProduto = require("./controladores/produtos/editarProduto")
+const excluirProduto = require("./controladores/produtos/excluirProduto")
+const listarProdutos = require("./controladores/produtos/listarProdutos");
 const cadastrarPedido = require("./controladores/pedidos/cadastrarPedido");
 const listarPedido = require("./controladores/pedidos/listarPedido");
 
@@ -41,7 +42,7 @@ rotas.put("/cliente/:id", editarCliente);
 rotas.get("/cliente", listarClientes);
 rotas.get("/cliente/:id", detalharCliente);
 
-rotas.post("/produto", cadastrarProduto);
+rotas.post("/produto", multer.single('produto_imagem'), cadastrarProduto);
 rotas.put("/produto/:id", editarProduto);
 rotas.get("/produto", listarProdutos);
 rotas.get("/produto/:id", detalharProduto);
