@@ -1,4 +1,5 @@
-const knex = require('../../database/conexao')
+const knex = require('../../database/conexao');
+const { excluirArquivo } = require('../../storage');
 
 const excluirProduto = async (req, res) => {
     const { id } = req.params
@@ -12,6 +13,10 @@ const excluirProduto = async (req, res) => {
 
         if (!produtoExiste) {
             return res.status(404).json('Produto não encontrado')
+        }
+
+        if (produtoExiste.produto_imagem) {
+            await excluirArquivo(`produtos/${produtoExiste.produto_imagem}`);
         }
 
         const excluirProduto = await knex('produtos').del().where({ id })

@@ -23,14 +23,14 @@ const uploadDeArquivos = async (file) => {
         path: arquivo.Key
     }
 }
-// const excluirArquivo = async (path) => {
-//     await s3.deleteObject({
-//         Bucket: 'desafio-unidade-5',
-//         Key: path
-//     }).promise()
-// }
+const excluirArquivo = async (path) => {
+    await s3.deleteObject({
+        Bucket: 'desafio-unidade-5',
+        Key: path
+    }).promise()
+}
 
 module.exports = {
     uploadDeArquivos,
-    // excluirArquivo
+    excluirArquivo
 }
