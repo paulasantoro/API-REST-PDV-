@@ -56,7 +56,8 @@ CREATE TABLE pedido_produtos(
     pedido_id INTEGER REFERENCES pedidos(id),
     produto_id INTEGER REFERENCES produtos(id),
     quantidade_produto INTEGER,
-    valor_produto INTEGER
+    valor_produto INTEGER,
+    FOREIGN KEY (produto_id) REFERENCES produtos (id)
 );
 
 
