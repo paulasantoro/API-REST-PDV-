@@ -33,4 +33,4 @@ const editarProduto = async (req, res) => {
     }
 }
 
-module.exports =  editarProduto;
+module.exports = editarProduto;

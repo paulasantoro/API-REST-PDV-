@@ -24,6 +24,7 @@ const excluirProduto = require("./controladores/produtos/excluirProduto")
 const listarProdutos = require("./controladores/produtos/listarProdutos");
 const cadastrarPedido = require("./controladores/pedidos/cadastrarPedido");
 const listarPedido = require("./controladores/pedidos/listarPedido");
+const adicionarImagemProduto = require("./controladores/produtos/adicionarImagem");
 
 const rotas = express();
 
@@ -42,7 +43,8 @@ rotas.put("/cliente/:id", editarCliente);
 rotas.get("/cliente", listarClientes);
 rotas.get("/cliente/:id", detalharCliente);
 
-rotas.post("/produto", multer.single('produto_imagem'), cadastrarProduto);
+rotas.post("/produto", cadastrarProduto);
+rotas.post("/produto/:id/imagem", multer.single('produto_imagem'), adicionarImagemProduto);
 rotas.put("/produto/:id", editarProduto);
 rotas.get("/produto", listarProdutos);
 rotas.get("/produto/:id", detalharProduto);
