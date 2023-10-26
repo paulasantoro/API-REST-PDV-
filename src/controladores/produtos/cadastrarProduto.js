@@ -1,20 +1,26 @@
-const knex = require('../../database/conexao')
+const knex = require('../../database/conexao');
+const multer = require('multer')
+const { uploadDeArquivos } = require('../../storage');
+const upload = multer();
 
 
 const cadastrarProduto = async (req, res) => {
-	const { descricao, quantidade_estoque, valor, categoria_id } = req.body;
+	const { descricao, quantidade_estoque, valor, categoria_id, produto_imagem } = req.body;
 
-	if (!descricao) {
-		return res.status(404).json("O campo descrição é obrigatório")
+	if (!descricao || !quantidade_estoque || !valor || !categoria_id) {
+		return res.status(404).json("Todos os campos são descrição obrigatórios")
 	}
-	if (!quantidade_estoque) {
-		return res.status(404).json("O campo quantidade do estoque é obrigatório")
-	}
-	if (!valor) {
-		return res.status(404).json("O campo valor é obrigatório")
-	}
-	if (!categoria_id) {
-		return res.status(404).json("O campo categoria id é obrigatório")
+
+	let imagemURL = null;
+
+	if (req.file) {
+		try {
+			const url = await uploadDeArquivos(req.file.buffer, req.file.mimetype);
+			imagemURL = url;
+
+		} catch (error) {
+			return res.statjs(500).json("Erro ao fazer upload da imagem")
+		}
 	}
 
 	try {
@@ -24,7 +30,8 @@ const cadastrarProduto = async (req, res) => {
 				descricao,
 				quantidade_estoque,
 				valor,
-				categoria_id
+				categoria_id,
+				produto_imagem: imagemURL
 			})
 			.returning('*')
 
