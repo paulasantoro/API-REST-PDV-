@@ -4,7 +4,7 @@ const { excluirArquivo } = require('../../storage');
 const excluirProduto = async (req, res) => {
     const { id } = req.params
     try {
-        const produtoEmPedidos = await knex('pedidos_produtos').where({ produto_id: id }).first();
+        const produtoEmPedidos = await knex('pedido_produtos').where({ produto_id: id }).first();
         if (produtoEmPedidos) {
             return res.status(400).json('Este produto está vinculado a um pedido portanto não pode ser excluido');
         }
@@ -28,6 +28,7 @@ const excluirProduto = async (req, res) => {
         return res.status(200).json('Produto excluido com sucesso ');
 
     } catch (error) {
+        console.error('Erro:', error);
         return res.status(500).json({ mensagem: 'Erro interno no servidor' })
     }
 }
