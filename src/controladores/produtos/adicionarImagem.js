@@ -32,7 +32,7 @@ const adicionarImagemProduto = async (req, res) => {
             url: imagemUrl
         });
     } catch (error) {
-        return res.status(500).json(error.message);
+        return res.status(500).json({ mensagem: 'Erro interno no servidor' })
     }
 };
 
