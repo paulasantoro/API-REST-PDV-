@@ -30,7 +30,7 @@ Nossa API já é capaz de listar categorias, cadastrar usuários e permitir a au
 - [x] Efetuar login do usuário
 - [x] Detalhar perfil do usuário logado
 - [x] Editar perfil do usuário logado
-- [x] Cadastrar produto com usuário logado
+- [x] Cadastrar produto com usuário logado 
 - [x] Editar produto com usuário logado
 - [x] Listar produtos com usuário logado
 - [x] Detalhar produto com usuário logado
@@ -39,6 +39,8 @@ Nossa API já é capaz de listar categorias, cadastrar usuários e permitir a au
 - [x] detalhar cliente com usuário logado
 - [x] atualizar cliente com usuário logado
 - [x] listar clientes com usuário logado
+- [x] cadastrar um pedido
+- [x] listar pedidos de um cliente /listar todos pedidos cadastrados
 
 
 ---
@@ -292,7 +294,29 @@ $ npm run dev
 
 <img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens/detalharCliente.png" width="1000px;" alt=""/>
 
+#### Rota 15 - Cadastrar pedido: 
 
+      No imsomnia crie uma http request POST, copie e cole o token no Bearer token. 
+
+         ❌  Não é permitido cadastrar um pedido utilizando id de produto não existente ou se a quantidade_produto for maior que o estoque.
+
+        🔗url deploy: https://busy-jade-salamander-toga.cyclic.app/pedido
+
+        🔗url insomnia: http://localhost:3000/pedido
+
+ <img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/commit/60cf0a20a2c5a9225359fdef81a2df54326e2cea#diff-70a1fa83c2a88754e9bb8d1cb6683a5cc192f7511f691e2bd4c3eae50100c904" width="1000px;" alt=""/>
+
+#### Rota 16 - Listar pedidos: 
+ 
+      No imsomnia crie uma http request GET, copie e cole o token no Bearer token. 
+           
+	✅ Se cliente_id não for fornecido, todos os produtos serão listados. 
+
+        🔗url deploy: https://busy-jade-salamander-toga.cyclic.app/pedido
+
+        🔗url insomnia: http://localhost:3000/pedido
+
+ <img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/commit/60cf0a20a2c5a9225359fdef81a2df54326e2cea#diff-242547d06ae2b3b302d2f5b31e5b44c2b0c2a2ba410df1b827b2dc54762aff31" width="1000px;" alt=""/>
 
 ## 👨‍💻 Contribuidores
 <table>
