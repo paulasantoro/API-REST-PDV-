@@ -33,9 +33,9 @@ const cadastrarProduto = async (req, res) => {
 		}
 
 		return res.status(200).json(produtoCadastrado[0])
-    } catch (error) {
-        return res.status(500).json({ mensagem: 'Erro interno no servidor' })
-    }
+	} catch (error) {
+		return res.status(500).json({ mensagem: 'Erro interno no servidor' })
+	}
 }
 
 module.exports = cadastrarProduto;
