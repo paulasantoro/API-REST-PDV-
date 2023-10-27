@@ -6,38 +6,36 @@ const  listarPedido = async (req, res) => {
 
     try{
 
-        let query = knex.select(
-            'pedidos.id',
-            'pedidos.valor_total',
-            'pedidos.observacao',
-            'pedidos.cliente_id'
-        )
-
-        .from('pedidos')
-        .leftJoin('pedido_produtos','pedidos.id', 'pedido_produtos.pedido_id');
-
         if(cliente_id){
-            query= query.where('pedidos.cliente_id', cliente_id);
+         
+        const pedidos = await knex('pedidos')
+           .where('cliente_id', cliente_id)
+           .select('id','valor_total','observacao','cliente_id');
+
+
+        pedidosComProdutos = [];
+
+        for (const pedido of pedidos){
+            const produtos1 = await knex('pedido_produtos')
+                 .where('pedido_id', pedido.id)
+                 .select('id','quantidade_produto','valor_produto','produto_id');
+        
+            pedidosComProdutos.push({
+            pedido,
+            pedido_produtos:produtos1,
+           });
+        
         }
 
-        const pedidos = await query;
+        res.status(200).json(pedidosComProdutos)
 
-        const response = pedidos.map((pedido) => {
-            const pedido_produtos = pedidos
-               .filter((p) => p.pedido_id === pedido.id)
-               .map((p) => ({
-                   id: p.id,
-                   quantidade_produto: p.quantidade_produto,
-                   valor_produto: p.valor_produto,
-                   pedido_id: p.pedido_id,
-                   produto_id: p.produto_id
-                
-               }));
+        }else{
+            const todosProdutos = await knex('pedido_produtos')
+              .select('id','quantidade_produto','valor_produto','produto_id');
 
-               return { pedido, pedido_produtos };
-        });
+              res.status(200).json(todosProdutos)
 
-        res.json(response)
+        }
 
     }catch(error){
 
