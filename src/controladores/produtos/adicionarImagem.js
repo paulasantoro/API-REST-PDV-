@@ -17,7 +17,10 @@ const adicionarImagemProduto = async (req, res) => {
             .where('id', id)
             .update({ produto_imagem: imagemUrl });
 
-        return res.status(200).json("Imagem do produto adicionada com sucesso");
+        return res.status(200).json({
+            mensagem: "Imagem do produto adicionada com sucesso",
+            url: imagemUrl
+        });
 
     } catch (error) {
         return res.status(500).json(error.message);
