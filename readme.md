@@ -304,7 +304,8 @@ $ npm run dev
 
         🔗url insomnia: http://localhost:3000/pedido
 
- <img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/commit/60cf0a20a2c5a9225359fdef81a2df54326e2cea#diff-70a1fa83c2a88754e9bb8d1cb6683a5cc192f7511f691e2bd4c3eae50100c904" width="1000px;" alt=""/>
+ <img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens/cadastrarPedido.png" width="1000px;" alt=""/>
+
 
 #### Rota 16 - Listar pedidos: 
  
@@ -316,7 +317,7 @@ $ npm run dev
 
         🔗url insomnia: http://localhost:3000/pedido
 
- <img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/commit/60cf0a20a2c5a9225359fdef81a2df54326e2cea#diff-242547d06ae2b3b302d2f5b31e5b44c2b0c2a2ba410df1b827b2dc54762aff31" width="1000px;" alt=""/>
+ <img style="border-radius: 50%;" src="https://github.com/paulasantoro/desafio-unidade-05-pvd/blob/master/imagens/listarPedidos.png" width="1000px;" alt=""/>
 
 ## 👨‍💻 Contribuidores
 <table>
